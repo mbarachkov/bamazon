@@ -13,5 +13,15 @@ CREATE TABLE products(
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('SHAMWOW', 'As Seen On TV', 20, 100);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Nails', 'Hardware', 5, 2000);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Hammer', 'Hardware', 15, 500);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('LED TV', 'Electronics', 1400, 28);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('IPad', 'Electronics', 300, 50);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Hydroflask', 'Outdoors', 30, 200);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Sleeping Bag', 'Outdoors', 100, 30);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Tent', 'Outdoors', 200, 20);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Cheerios', 'Food', 7, 150);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Poptarts', 'food', 8, 50);
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('Flexseal', 'As Seen On TV', 40, 250);
 
 SELECT * FROM products;

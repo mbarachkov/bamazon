@@ -39,36 +39,39 @@ function runSearch() {
         });
 }
 
-// function productSearch() {
-//     inquirer
-//         .prompt({
-//             name: "PRIMARY KEY",
-//             type: "input",
-//             message: "What is the ID of the product you are looking for?"
-//         })
-//         .then(function (answer) {
-//             var query = "SELECT * FROM products WHERE ?";
-//             connection.query(query, { products: answer.product_name }, function (err, res) {
-//                 if (err) throw err;
-//                 for (var i = 0; i < res.length; i++) {
-//                     console.log(res[i].product_name);
-//                 }
-//                 runSearch();
-//             });
-//         });
-// }
-
 function productSearch() {
     inquirer
-      .prompt({
-        type: "input",
-        message: "What is the ID of the item you are looking for?",
-        name: "id"
-      }).then(answer => {
-        connection.query("SELECT * FROM products WHERE ?", answer, (err, data)=> {
-          if(err) throw err;
-          console.table(data);
-          runSearch();
+        .prompt({
+            type: "input",
+            message: "What is the ID(1-10) of the item you are looking for?",
+            name: "id"
+        }).then(answer => {
+            connection.query("SELECT * FROM products WHERE ?", answer, (err, data) => {
+                if (err) throw err;
+                console.table(data);
+                amountSearch()
+            });
         });
-      });
-  }
+}
+
+function amountSearch() {
+    inquirer
+        .prompt({
+            type: "input",
+            message: "How many of this item are you looking for?",
+            name: "stock_quantity"
+        }).then((answer) => {
+            connection.query("SELECT * FROM products WHERE ?", answer, (err, data) => {
+                var amount = parseInt(data.amount);
+                if (err) throw err;
+                else if (amount > answer) {
+                    console.log("we cannot fufill that order, it must be under" + answer.stock_quantity);
+                } else {
+                    console.log("we can fufill that order")
+                    runSearch();
+                }
+                console.table(data);
+            });
+
+        });
+}
