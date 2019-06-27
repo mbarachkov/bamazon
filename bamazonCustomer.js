@@ -22,12 +22,17 @@ function runSearch() {
             type: "list",
             message: "What would you like to do?",
             choices: [
+                "View all available Items",
                 "Find items by ID",
                 "exit"
             ]
         })
         .then(function (answer) {
             switch (answer.action) {
+                case "View all available Items":
+                    allProducts();
+                    break;
+
                 case "Find items by ID":
                     productSearch();
                     break;
@@ -38,6 +43,16 @@ function runSearch() {
             }
         });
 }
+
+function allProducts() {
+    connection.query("SELECT product_name FROM products", function(err, res) {
+      if (err) throw err;
+  
+      // Log all results of the SELECT statement
+      console.log(res);
+      connection.end();
+    });
+  }
 
 function productSearch() {
     inquirer
@@ -62,7 +77,7 @@ function amountSearch() {
             name: "stock_quantity"
         }).then((answer) => {
             connection.query("SELECT * FROM products WHERE ?", answer, (err, data) => {
-                var amount = parseInt(data.amount);
+                var amount = parseInt(data.stock_quantity);
                 if (err) throw err;
                 else if (amount > answer) {
                     console.log("we cannot fufill that order, it must be under" + answer.stock_quantity);
