@@ -20,4 +20,3 @@ function afterConnection() {
     })
 }
 
-// app.listen(3306)
