@@ -70,7 +70,6 @@ function amountSearch() {
                     console.log("we can fufill that order")
                     runSearch();
                 }
-                console.table(data);
             });
 
         });
