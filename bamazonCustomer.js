@@ -47,10 +47,8 @@ function runSearch() {
 function allProducts() {
     connection.query("SELECT product_name FROM products", function(err, res) {
       if (err) throw err;
-  
-      // Log all results of the SELECT statement
       console.table(res);
-      connection.end();
+      runSearch();
     });
   }
 
